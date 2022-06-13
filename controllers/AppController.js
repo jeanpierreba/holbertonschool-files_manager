@@ -3,9 +3,10 @@ import DBClient from '../utils/db';
 
 class AppController {
   static getStatus(req, res) {
-    if (redisClient.isAlive() && DBClient.isAlive()) {
-		res.status(200).json({ redis: true, db: true}, 200)
-	}
+    const data = {
+      redis: RedisClient.isAlive(),
+      db: DBClient.isAlive(),
+    };
     return res.status(200).send(data);
   }
 
